@@ -1,0 +1,104 @@
+# =====================================
+# Kotlin Multiplatform + Compose MPP
+# Android + iOS
+# =====================================
+
+### Kotlin / Gradle ###
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+*.iml
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/tasks.xml
+.idea/compiler.xml
+.idea/jarRepositories.xml
+
+### Android ###
+*.apk
+*.ap_
+*.dex
+*.class
+*.log
+bin/
+gen/
+out/
+captures/
+local.properties
+*.keystore
+*.jks
+# Google Services (Firebase etc.)
+google-services.json
+GoogleService-Info.plist
+
+### iOS / Xcode ###
+DerivedData/
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xcworkspace/xcuserdata
+*.xcuserdatad
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+### IntelliJ / Android Studio ###
+.idea/
+*.iws
+*.ipr
+*.iml
+*.hprof
+
+### macOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+### Misc ###
+*.orig
+*.rej
+*.bak
+*.tmp
+*.swp
+*.swo
+.kotlin
+.gradle
+**/build/
+xcuserdata
+!src/**/build/
+.idea
+captures
+.externalNativeBuild
+.cxx
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# =====================================
+# End of .gitignore
+# =====================================
+
