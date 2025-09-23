@@ -1,4 +1,4 @@
-package dev.belalkhan.taletree.home
+package dev.belalkhan.taletree.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,17 +9,17 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-data class HomeState(
+data class MainState(
     val isLogoutDialogVisible: Boolean = false
 )
 
 
-class HomeViewModel(
+class MainViewModel(
     private val firebaseAuth: FirebaseAuthClient
 ) : ViewModel() {
 
-    private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
-    val state: StateFlow<HomeState> = _state.asStateFlow()
+    private val _state: MutableStateFlow<MainState> = MutableStateFlow(MainState())
+    val state: StateFlow<MainState> = _state.asStateFlow()
 
 
     fun onLogoutRequested() {

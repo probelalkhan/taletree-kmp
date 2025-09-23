@@ -4,7 +4,7 @@ import dev.belalkhan.taletree.auth.AuthViewModel
 import dev.belalkhan.taletree.auth.data.AuthRepository
 import dev.belalkhan.taletree.auth.data.AuthRepositoryImpl
 import dev.belalkhan.taletree.firebase.auth.FirebaseAuthClient
-import dev.belalkhan.taletree.home.HomeViewModel
+import dev.belalkhan.taletree.main.MainViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
@@ -13,5 +13,5 @@ val taleTreeModule = module {
     single<AuthRepository> { AuthRepositoryImpl(get()) }
     viewModel { AuthViewModel(get()) }
     viewModel { AppViewModel(get()) }
-    viewModel { HomeViewModel(get()) }
+    viewModel { MainViewModel(get()) }
 }

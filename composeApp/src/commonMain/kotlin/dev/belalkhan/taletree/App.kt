@@ -10,9 +10,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import dev.belalkhan.taletree.auth.AuthView
 import dev.belalkhan.taletree.firebase.auth.AuthState
-import dev.belalkhan.taletree.home.HomeView
+import dev.belalkhan.taletree.main.home.HomeView
+import dev.belalkhan.taletree.main.MainView
 import dev.belalkhan.taletree.splash.SplashScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinApplication
@@ -40,7 +40,7 @@ private fun TaleTreeApp(
     val navController: NavHostController = rememberNavController()
 
     val startDestination = when (state.value) {
-        AuthState.Authenticated -> RootDestination.Home.route
+        AuthState.Authenticated -> RootDestination.Main.route
         AuthState.Loading -> RootDestination.Splash.route
         AuthState.Unauthenticated -> RootDestination.Login.route
     }
@@ -58,10 +58,10 @@ private fun TaleTreeApp(
                 }
 
                 composable(RootDestination.Login.route) {
-                    AuthView()
+                    MainView()
                 }
 
-                composable(RootDestination.Home.route) {
+                composable(RootDestination.Main.route) {
                     HomeView()
                 }
             }
