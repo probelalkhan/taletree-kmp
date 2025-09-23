@@ -44,14 +44,14 @@ kotlin {
         // CocoaPods dependencies
         pod("FirebaseCore") {
             extraOpts += listOf("-compiler-option", "-fmodules")
-            //extraOpts += listOf("-Xbinary=bundleId=dev.belalkhan.taletree")
         }
         pod("FirebaseAuth") {
             extraOpts += listOf("-compiler-option", "-fmodules")
         }
+        pod("FirebaseFirestore") {
+            extraOpts += listOf("-compiler-option", "-fmodules")
+        }
     }
-
-
 
     sourceSets {
         val commonMain by getting {
@@ -64,10 +64,10 @@ kotlin {
                 implementation(compose.components.uiToolingPreview)
                 implementation(libs.androidx.lifecycle.viewmodelCompose)
                 implementation(libs.androidx.lifecycle.runtimeCompose)
-                implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-rc02")
-                implementation("io.insert-koin:koin-compose:4.1.1")
-                implementation("io.insert-koin:koin-compose-viewmodel:4.1.1")
-                implementation("io.insert-koin:koin-compose-viewmodel-navigation:4.1.1")
+                implementation(libs.navigation.compose)
+                implementation(libs.koin.compose)
+                implementation(libs.koin.compose.viewmodel)
+                implementation(libs.koin.compose.viewmodel.navigation)
             }
         }
 
@@ -81,10 +81,12 @@ kotlin {
             dependencies {
                 implementation(compose.preview)
                 implementation(libs.androidx.activity.compose)
-                implementation("com.google.firebase:firebase-auth-ktx:23.2.1")
+                implementation(libs.firebase.auth)
+                implementation(libs.firebase.firestore)
             }
         }
     }
+
 }
 
 android {
@@ -115,8 +117,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
 }
 
 dependencies {
+    implementation(platform(libs.firebase.bom))
     debugImplementation(compose.uiTooling)
 }
