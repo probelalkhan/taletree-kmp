@@ -3,6 +3,7 @@ package dev.belalkhan.taletree.main
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -29,6 +30,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 import taletree.composeapp.generated.resources.Res
 import taletree.composeapp.generated.resources.ic_exit
+import taletree.composeapp.generated.resources.ic_write
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -70,7 +72,7 @@ private fun Main(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Home", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
+                title = { Text(selectedItem.label, fontSize = 20.sp, fontWeight = FontWeight.Bold) },
                 actions = {
                     IconButton(onClick = onLogoutRequested) {
                         Icon(
@@ -97,7 +99,16 @@ private fun Main(
                         label = { Text(item.label) })
                 }
             }
-        }) { innerPadding ->
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = { /* TODO: Handle FAB click */ }) {
+                Icon(
+                    painter = painterResource(Res.drawable.ic_write),
+                    contentDescription = "Add"
+                )
+            }
+        },
+    ) { innerPadding ->
         Surface(modifier = Modifier.padding(innerPadding)) {
             when (selectedItem) {
                 MainDestination.Bookmark -> {
