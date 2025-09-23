@@ -4,6 +4,7 @@ use_modular_headers!
 
 target 'iosApp' do
   pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
   pod 'composeApp', :path => '../composeApp'
 end
 

@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "FirebaseAuth": [],
-    "FirebaseCore": []
+    "FirebaseCore": [],
+    "FirebaseFirestore": []
   },
   "xcconfig": {
     "ENABLE_USER_SCRIPT_SANDBOXING": "NO"
