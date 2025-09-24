@@ -1,5 +1,6 @@
 package dev.belalkhan.taletree.main
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,8 +24,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import dev.belalkhan.taletree.MainDestination
 import dev.belalkhan.taletree.main.home.HomeView
+import dev.belalkhan.taletree.main.write.WriteStoryView
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
@@ -32,16 +38,33 @@ import taletree.composeapp.generated.resources.Res
 import taletree.composeapp.generated.resources.ic_exit
 import taletree.composeapp.generated.resources.ic_write
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainView(
     viewModel: MainViewModel = koinViewModel()
 ) {
+    val navController: NavHostController = rememberNavController()
     val state by viewModel.state.collectAsStateWithLifecycle()
-    Main(
-        state = state,
-        onLogoutRequested = viewModel::onLogoutRequested
-    )
+
+    NavHost(
+        navController = navController,
+        startDestination = MainDestination.Root.route,
+        modifier = Modifier.fillMaxSize()
+    ) {
+
+        composable(MainDestination.Root.route) {
+            Main(
+                onWrite = { navController.navigate(MainDestination.Write.route) },
+                onLogoutRequested = viewModel::onLogoutRequested
+            )
+        }
+
+        composable(MainDestination.Write.route) {
+            WriteStoryView(
+                onPublish = { string, string1 -> },
+                onSaveDraft = { string, string1 -> }
+            )
+        }
+    }
 
     if (state.isLogoutDialogVisible) {
         AlertDialog(
@@ -65,14 +88,20 @@ fun MainView(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Main(
-    state: MainState = MainState(),
+    onWrite: () -> Unit,
     onLogoutRequested: () -> Unit,
 ) {
-    var selectedItem by remember { mutableStateOf<MainDestination>(MainDestination.Home) }
+    var selectedItem by remember { mutableStateOf<BottomNavDestination>(BottomNavDestination.Home) }
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(selectedItem.label, fontSize = 20.sp, fontWeight = FontWeight.Bold) },
+                title = {
+                    Text(
+                        selectedItem.label,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                },
                 actions = {
                     IconButton(onClick = onLogoutRequested) {
                         Icon(
@@ -86,7 +115,7 @@ private fun Main(
         },
         bottomBar = {
             NavigationBar {
-                MainDestination.bottomNavItems.forEach { item ->
+                BottomNavDestination.bottomNavItems.forEach { item ->
                     NavigationBarItem(
                         selected = selectedItem == item,
                         onClick = { selectedItem = item },
@@ -101,7 +130,7 @@ private fun Main(
             }
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /* TODO: Handle FAB click */ }) {
+            FloatingActionButton(onClick = onWrite) {
                 Icon(
                     painter = painterResource(Res.drawable.ic_write),
                     contentDescription = "Add"
@@ -111,15 +140,15 @@ private fun Main(
     ) { innerPadding ->
         Surface(modifier = Modifier.padding(innerPadding)) {
             when (selectedItem) {
-                MainDestination.Bookmark -> {
+                BottomNavDestination.Bookmark -> {
 
                 }
 
-                MainDestination.Home -> {
+                BottomNavDestination.Home -> {
                     HomeView()
                 }
 
-                MainDestination.Profile -> {
+                BottomNavDestination.Profile -> {
 
                 }
             }
@@ -131,7 +160,10 @@ private fun Main(
 @Preview
 private fun MainPreview() {
     Surface {
-        Main { }
+        Main(
+            onWrite = {},
+            onLogoutRequested = {}
+        )
     }
 }
 
