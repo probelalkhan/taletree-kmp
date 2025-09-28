@@ -141,7 +141,7 @@ abstract class RebuildIosTask @Inject constructor(
 
     @TaskAction
     fun execute() {
-        logger.lifecycle("📦 Installing CocoaPods dependencies...")
+        logger.lifecycle("Installing CocoaPods dependencies...")
         execOperations.exec {
             // 3. Use the property during the execution phase
             workingDir = iosAppDir.get().asFile
