@@ -29,6 +29,12 @@ kotlin {
             isStatic = false // dynamic framework is required for CocoaPods + Firebase
             freeCompilerArgs += "-Xbinary=bundleId=dev.belalkhan.taletree"
         }
+
+        iosTarget.compilations["main"].cinterops {
+            val firestore by creating {
+                defFile(project.file("src/iosMain/c_interop/firestore.def"))
+            }
+        }
     }
 
     cocoapods {
@@ -88,6 +94,7 @@ kotlin {
             }
         }
     }
+
     compilerOptions.freeCompilerArgs.add("-Xexpect-actual-classes")
 }
 

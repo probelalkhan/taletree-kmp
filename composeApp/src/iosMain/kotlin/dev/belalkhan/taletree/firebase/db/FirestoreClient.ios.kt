@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.callbackFlow
 // This actual class implements the expected FirestoreClient for the iOS platform.
 actual class FirestoreClient actual constructor() {
 
-    //val db = FirestoreWr
+    private val wrapper = Firesto
 
     /**
      * Creates a new document in a specified collection.
