@@ -27,6 +27,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = false // dynamic framework is required for CocoaPods + Firebase
+            freeCompilerArgs += "-Xbinary=bundleId=dev.belalkhan.taletree"
         }
     }
 
@@ -87,7 +88,7 @@ kotlin {
             }
         }
     }
-
+    compilerOptions.freeCompilerArgs.add("-Xexpect-actual-classes")
 }
 
 android {

@@ -14,11 +14,15 @@ abstract class RebuildIosTask @Inject constructor(
     @get:InputDirectory
     abstract val iosAppDir: DirectoryProperty
 
+    @get:InputDirectory
+    abstract val projectRootDir: DirectoryProperty
+
     init {
         group = "ios"
-        description = "Run pod install for the iOS app"
+        description = "Run pod install and link iOS frameworks"
         dependsOn("generateDummyFramework")
         iosAppDir.set(project.layout.projectDirectory.dir("../iosApp"))
+        projectRootDir.set(project.rootDir)
     }
 
     @TaskAction
