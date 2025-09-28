@@ -1,3 +1,4 @@
+import dev.belalkhan.gradle.tasks.RebuildIosTask
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -125,37 +126,13 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
-abstract class RebuildIosTask @Inject constructor(
-    private val execOperations: ExecOperations
-) : DefaultTask() {
-
-    @get:InputDirectory
-    abstract val iosAppDir: DirectoryProperty
-
-    init {
-        group = "ios"
-        description = "Run pod install for the iOS app"
-        dependsOn("generateDummyFramework")
-        iosAppDir.set(project.layout.projectDirectory.dir("../iosApp"))
-    }
-
-    @TaskAction
-    fun execute() {
-        logger.lifecycle("Installing CocoaPods dependencies...")
-        execOperations.exec {
-            // 3. Use the property during the execution phase
-            workingDir = iosAppDir.get().asFile
-            commandLine("pod", "install")
-        }
-        logger.lifecycle("iOS pod install complete.")
-    }
-}
-
 tasks.register<RebuildIosTask>("rebuildIos")
 tasks.register<Delete>("cleanIos") {
     group = "ios"
     description = "Clean all iOS build artifacts and Pods"
-    logger.lifecycle("🧹 Cleaning iOS build artifacts...")
+    doFirst {
+        logger.lifecycle("Cleaning iOS build artifacts...")
+    }
     delete(
         project.buildDir,
         project.file("Pods"),
