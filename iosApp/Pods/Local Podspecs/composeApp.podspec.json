@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "FirebaseAuth": [],
-    "FirebaseCore": [],
     "FirebaseFirestore": []
   },
   "xcconfig": {

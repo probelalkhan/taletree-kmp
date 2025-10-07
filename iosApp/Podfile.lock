@@ -1196,7 +1196,6 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.37)
   - composeApp (1.0.0):
     - FirebaseAuth
-    - FirebaseCore
     - FirebaseFirestore
   - FirebaseAppCheckInterop (11.15.0)
   - FirebaseAuth (11.15.0):
@@ -1393,7 +1392,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   abseil: a05cc83bf02079535e17169a73c5be5ba47f714b
   BoringSSL-GRPC: dded2a44897e45f28f08ae87a55ee4bcd19bc508
-  composeApp: f9b4f2e90751027c6fcadf70b1cb1dc85c5d18d6
+  composeApp: fd62f0ff0aef1fed4dcbc3d43b77ea4cd3884661
   FirebaseAppCheckInterop: 06fe5a3799278ae4667e6c432edd86b1030fa3df
   FirebaseAuth: a6575e5fbf46b046c58dc211a28a5fbdd8d4c83b
   FirebaseAuthInterop: 7087d7a4ee4bc4de019b2d0c240974ed5d89e2fd

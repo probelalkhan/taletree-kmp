@@ -10,6 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dev.belalkhan.taletree.auth.AuthView
 import dev.belalkhan.taletree.firebase.auth.AuthState
 import dev.belalkhan.taletree.main.home.HomeView
 import dev.belalkhan.taletree.main.MainView
@@ -58,11 +59,11 @@ private fun TaleTreeApp(
                 }
 
                 composable(RootDestination.Login.route) {
-                    MainView()
+                    AuthView()
                 }
 
                 composable(RootDestination.Main.route) {
-                    HomeView()
+                    MainView()
                 }
             }
         }

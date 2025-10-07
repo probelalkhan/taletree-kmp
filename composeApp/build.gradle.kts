@@ -29,12 +29,6 @@ kotlin {
             isStatic = false // dynamic framework is required for CocoaPods + Firebase
             freeCompilerArgs += "-Xbinary=bundleId=dev.belalkhan.taletree"
         }
-
-        iosTarget.compilations["main"].cinterops {
-            val firestore by creating {
-                defFile(project.file("src/iosMain/c_interop/firestore.def"))
-            }
-        }
     }
 
     cocoapods {
@@ -47,11 +41,6 @@ kotlin {
         framework {
             baseName = "ComposeApp"
             isStatic = false // dynamic framework required for CocoaPods + Firebase
-        }
-
-        // CocoaPods dependencies
-        pod("FirebaseCore") {
-            extraOpts += listOf("-compiler-option", "-fmodules")
         }
         pod("FirebaseAuth") {
             extraOpts += listOf("-compiler-option", "-fmodules")
